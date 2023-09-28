@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UsuarioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,5 +19,8 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/configuracion/usuarios', [UsuarioController::class, 'index'])->name('configuracion/usuarios');
+Route::get('/configuracion/usuarios/nuevo', [UsuarioController::class, 'create']);
+Route::get('/configuracion/suarios/{usuarioVistaId}', [UsuarioController::class, 'show']);

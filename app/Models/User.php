@@ -17,6 +17,8 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    protected $table = "usuarios";
+    
     protected $fillable = [
         'name',
         'email',
@@ -42,4 +44,17 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function rolDeUsuario(){
+        /* $rolDeUsuario = Role::where('rol_id', $this->id)->firts();
+        return $rolDeUsuario; */
+        return $this->hasOne(Role::class, 'id', 'rol_id');
+    }
+
+    public function sucursalDeUsuario(){
+        return $this->hasOne(Sucursale::class, 'id', 'sucursal_id');
+    }
+
+
+
 }
